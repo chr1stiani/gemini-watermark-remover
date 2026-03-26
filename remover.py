@@ -175,7 +175,9 @@ def process_image(
     """Remove the watermark and save. Returns the output path."""
     input_path = Path(input_path)
     if output_path is None:
-        output_path = input_path.with_stem(input_path.stem + "_clean")
+        out_dir = input_path.parent / "clean"
+        out_dir.mkdir(exist_ok=True)
+        output_path = out_dir / input_path.name
     else:
         output_path = Path(output_path)
 
